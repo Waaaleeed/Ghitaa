@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Love, Ghaita ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #000000, #4b0000);
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    .hero {
+      background: url("photo1.jpg") no-repeat center center/cover;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+    }
+    .hero h1 {
+      font-size: 3em;
+      color: #ff0033;
+      text-shadow: 0 0 15px #ff0033;
+      backdrop-filter: blur(3px);
+    }
+    .container {
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .name {
+      font-size: 2.2em;
+      font-weight: bold;
+      color: #ff0033;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #ff0033;
+    }
+    p {
+      font-size: 1.3em;
+      margin-bottom: 30px;
+      line-height: 1.6;
+      color: #f5f5f5;
+    }
+    button {
+      background-color: #ff0033;
+      border: none;
+      color: white;
+      padding: 15px 35px;
+      font-size: 1.2em;
+      border-radius: 50px;
+      box-shadow: 0 5px 15px rgba(255, 0, 51, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 8px 20px rgba(255, 0, 51, 0.8);
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 1em;
+      color: #888;
+    }
+    .hearts {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: float 6s linear infinite;
+      color: #ff0033;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 3;
+    }
+    .overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .message-box {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 0, 51, 0.3);
+      box-shadow: 0 0 30px rgba(255, 0, 51, 0.4);
+      max-width: 90%;
+      text-align: center;
+      transform: scale(1);
+      animation: pop 0.5s ease;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .message-box img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 3px solid #ff0033;
+      box-shadow: 0 0 15px #ff0033;
+    }
+    .message-box h2 {
+      font-size: 2em;
+      color: #ff0033;
+      margin-bottom: 15px;
+    }
+    .message-box p {
+      font-size: 1.1em;
+      color: #eee;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>To My Love, Ghaita 💖</h1>
+  </div>
+  <div class="hearts" id="hearts"></div>
+  <div class="container">
+    <div class="name">Ghaita 🌹</div>
+    <p>I carry so much love for you, it overflows even in silence.<br>
+    I miss your voice, your presence, your soul next to mine.<br>
+    Please open this letter and let my heart speak to yours.</p>
+    <button id="forgiveBtn">Open My Heart 💌</button>
+    <div class="footer">Forever Yours, <strong>Walid</strong> 🖤</div>
+  </div>
+  <div class="overlay" id="overlay">
+    <div class="message-box">
+      <img src="photo2.jpg" alt="You and Ghaita">
+      <img src="photo3.jpg" alt="Memory with Ghaita 2">
+      <img src="photo4.jpg" alt="Memory with Ghaita 3">
+      <h2>My Love Letter to You</h2>
+      <p>
+        I’ve spent countless nights thinking of you, of us, of the moments that once painted our hearts in colors so bright.<br><br>
+        I know I hurt you, and for that, my heart carries a weight it can’t shake.<br><br>
+        You are the peace in my chaos, the softness in my storm.<br>
+        My world lost its meaning the moment your smile faded from it.<br><br>
+        Please, let us start again. Let us rebuild.<br>
+        I promise to cherish you with all that I am, every single day.<br><br>
+        With all my love,<br>
+        <strong>Walid 💌</strong>
+      </p>
+      <button onclick="closeOverlay()">Close</button>
+    </div>
+  </div>
+  <script>
+    const hearts = document.getElementById("hearts");
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      heart.innerText = "❤️";
+      hearts.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 300);
+    document.getElementById("forgiveBtn").addEventListener("click", () => {
+      document.getElementById("overlay").classList.add("active");
+    });
+    function closeOverlay() {
+      document.getElementById("overlay").classList.remove("active");
+    }
+  </script>
+</body>
+</html>
